@@ -2,7 +2,7 @@
 Repositorio para subir el Programa1 de la materia de Métodos Numéricos con la profesora Teresa Carrillo Ramírez
 
 ## Integrantes
-- BELTRAN ISIDRO CARLOS
+- BELTRÁN ISIDRO CARLOS FABIÁN 
 - CHAPARRO BLAS ADRIAN ALEXIS
 - GÓMEZ HERRERA CRISTIAN YAIR
 - DÍAZ VALDEZ FIDEL GILBERTO

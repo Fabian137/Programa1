@@ -1,8 +1,13 @@
 # Programa1
 Repositorio para subir el Programa1 de la materia de Métodos Numéricos con la profesora Teresa Carrillo Ramírez
 
+## Integrantes
+- BELTRAN ISIDRO CARLOS
+- CHAPARRO BLAS ADRIAN ALEXIS
+- GÓMEZ HERRERA CRISTIAN YAIR
+- DÍAZ VALDEZ FIDEL GILBERTO
 
-Un pequeño documento donde explicamos algunas cosas acerca del programa por que lo creimos conveniente
+Un pequeño documento donde explicamos algunas cosas acerca de la 2º función por que lo creimos conveniente
 [Google Doc](https://docs.google.com/document/d/1NhLP4LF7VG_Mc3CS6mx4jl9Wppi7azOQwUgGWZ77AeA/edit?usp=sharing)
 
 ## ¡Leer antes de proceder!

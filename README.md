@@ -1,4 +1,4 @@
-# Programa1
+# Programas
 Repositorio para subir el ejecutable de los programas de la materia de Métodos Numéricos con la profesora Teresa Carrillo Ramírez
 
 ## Integrantes

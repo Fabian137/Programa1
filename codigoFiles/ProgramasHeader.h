@@ -4,6 +4,8 @@
 #include <cmath>
 #include <complex>
 #include <math.h>
+#include <limits>
+
 
 using namespace std;
 
@@ -13,13 +15,13 @@ using namespace std;
 //[FUNCION PARA LA IMPRESION DE UNA CARATULA]
 void caratula()
 {
-    cout << "\t\tPrograma 1.\n\n";
-    cout << "Equipo 1. \n\nIntegrantes: \n\n";
-    cout << "Beltran Isidro Carlos\n\n";
-    cout << "Diaz Valdez Fidel\n\n";
-    cout << "Chaparro Blas Adrian Alexis\n\n";
-    cout << "Gomez Herrera Cristian Yair\n\n";
-    cout << "Proposito: Dadas 4 funciones encontrar sus raices correspondientes mediante los mÃƒÂ©todos, ya sean de Secante o de Newton. Permitir que el usuario ingrese el intervalo o valor inicial. \n\n";
+    cout << "\t\tPrograma 3.\n\n";
+    cout << "Equipo 1. \n\nIntegrantes: \n";
+    cout << "Beltrán Isidro Carlos Fabián\n";
+    cout << "Díaz Valdez Fidel\n";
+    cout << "Chaparro Blas Adrian Alexis\n";
+    cout << "Goméz Herrera Cristian Yair\n";
+    cout << "Propósito: Resolver un sistema de ecuaciones ingresado en su forma matricial por el método de Jacobi \n\n";
     cout << "\t\tComienzo de Programa: \n\n";
 }
 
@@ -49,14 +51,7 @@ float primeraDer(float valInput)
 {
     return (-pow(valInput, 2) * sin(valInput)) + ((2 * valInput) * (cos(valInput))) - 2;
 }
-/*
 
-float segundoDer(float valInput){
-    return ((1 / 4) * exp(2 + valInput)) * ((6 - (2 / pow(valInput, 2))) + (4 / pow(valInput, 3)));
-}
-Se hacia cero porque c++ toma 1/4 como entero y pues es cero. Btw habÃ¯Â¿Â½a que cambiar un poco la derivada.
-Tuve el mismo error con 1/2
-*/
 
 float segundoDer(float valInput)
 {
@@ -179,8 +174,7 @@ void raizSecante(float cotaI, float cotaD, int opc)
     }
 }
 
-void raizNewton(float valX, int opc)
-{
+void raizNewton(float valX, int opc){
     float x_0 = valX, x_1 = 0, f_0 = 0, f_1 = 0, errorA = 0, errorR = 0;
     bool flagExit = false;
     int cantidad_derivadas = 0;
@@ -189,10 +183,8 @@ void raizNewton(float valX, int opc)
         flagExit = true;
     else
     {
-        do
-        {
-            if (opc == 1)
-            {
+        do{
+            if (opc == 1){
                 cout << "\t\n[PRIMERA FUNCION POR NEWTON: x^2 cos(x) - 2x]\n";
                 f_0 = primeraFunc(x_0);
                 f_1 = primeraDer(x_0);
@@ -200,8 +192,7 @@ void raizNewton(float valX, int opc)
                 x_1 = x_0 - (f_0 / f_1);
             }
 
-            if (opc == 2)
-            {
+            if (opc == 2){
 
                 cout << "\t\n[SEGUNDA FUNCION POR NEWTON: (6 - 2/x^2) (e^2+x /4) + 1]\n";
                 f_0 = segundoFunc(x_0);
@@ -222,8 +213,7 @@ void raizNewton(float valX, int opc)
                         return;
                     }
                 }
-                else if (x_0 < -1)
-                {
+                else if (x_0 < -1){
                     cout << "\t\n La derivida del punto dado tiende a cero.!!\n Hay una asintota en y = 1\n";
                     cout << "\t\n Se modificara el valor de x_0 por -0.75\n";
 
@@ -232,8 +222,7 @@ void raizNewton(float valX, int opc)
                     printf("\t[     x_0    ] [     f_x    ]\n");
                     printf("\t[%12.6f] [%12.6f] \n", x_0, f_1);
                 }
-                else
-                {
+                else{
                     f_1 = segundoDer(x_0);
                     printf("\t[%12.6f] [%12.6f] \n", x_0, f_1);
                 }
@@ -243,8 +232,7 @@ void raizNewton(float valX, int opc)
                 x_1 = x_0 - (f_0 / f_1);
             }
 
-            if (opc == 3)
-            {
+            if (opc == 3){
                 cout << "\t\n[TERCERA FUNCION POR NEWTON: x^3 - 3sen(x^2) + 1]\n";
                 f_0 = tercerFunc(x_0);
                 f_1 = tercerDer(x_0);
@@ -252,8 +240,7 @@ void raizNewton(float valX, int opc)
                 x_1 = x_0 - (f_0 / f_1);
             }
 
-            if (opc == 4)
-            {
+            if (opc == 4){
                 cout << "\t\n[CUARTA FUNCION POR NEWTON: x^3 + 6x^2 + 9.4x]\n";
                 f_0 = cuartaFunc(x_0);
                 f_1 = cuartaDer(x_0);
@@ -286,32 +273,28 @@ void raizNewton(float valX, int opc)
 
         x_0 = x_1;
 
-        if (opc == 1)
-        {
+        if (opc == 1){
             f_0 = primeraFunc(x_0);
             f_1 = primeraDer(x_0);
 
             x_1 = x_0 - (f_0 / f_1);
         }
 
-        if (opc == 2)
-        {
+        if (opc == 2){
             f_0 = segundoFunc(x_0);
             f_1 = segundoDer(x_0);
 
             x_1 = x_0 - f_0 / f_1;
         }
 
-        if (opc == 3)
-        {
+        if (opc == 3){
             f_0 = tercerFunc(x_0);
             f_1 = tercerDer(x_0);
 
             x_1 = x_0 - (f_0 / f_1);
         }
 
-        if (opc == 4)
-        {
+        if (opc == 4){
             f_0 = cuartaFunc(x_0);
             f_1 = cuartaDer(x_0);
 
@@ -338,24 +321,22 @@ void metodo(int funcion)
     int opcion;
     float x0, x1, x;
 
-    do
-    {
-        cout << "\n\nElecciÃƒÂ³n de MÃƒÂ©todo: \n\n";
+    do{
+        cout << "\n\nElección de Método: \n\n";
         cout << "1. Secante\n";
         cout << "2. Newton-Raphson\n\n";
-        cout << "Seleccione una opciÃƒÂ³n: ";
+        cout << "Seleccione una opción: ";
         cin >> opcion;
 
-        if (opcion < 1 || opcion > 2)
-        {
-            cout << "OpciÃƒÂ³n no vÃƒÂ¡lida. Por favor, elija una opciÃƒÂ³n vÃƒÂ¡lida." << endl;
+        if (opcion < 1 || opcion > 2){
+            cout << "Opción no válida. Por favor, elija una opción válida." << endl;
         }
 
     } while (opcion < 1 || opcion > 2);
 
     if (opcion == 1)
     {
-        cout << "\n\nSe eligiÃƒÂ³ el mÃƒÂ©todo de la Secante.\n\n";
+        cout << "\n\nSe eligió el método de la Secante.\n\n";
         cout << "Da el valor del x_ 0: ";
         cin >> x0;
         cout << "Da el valor del x_1: ";
@@ -364,7 +345,7 @@ void metodo(int funcion)
     }
     else
     {
-        cout << "\n\nSe eligiÃƒÂ³ Newton.\n\n";
+        cout << "\n\nSe eligió Newton.\n\n";
         cout << "Da el valor de x: ";
         cin >> x;
         raizNewton(x, funcion);
@@ -381,8 +362,8 @@ int menuDos()
     cout << "Opc 4. Funcion 4: x^3 + 6x^2 + 9.4x\n";
     cout << "Opc 0. Salida\n\n";
 
-    // Pedir al usuario que elija una opciÃƒÂ³n
-    cout << "Seleccione una opciÃƒÂ³n: ";
+    // Pedir al usuario que elija una opción
+    cout << "Seleccione una opción: ";
     cin >> opcion;
 
     return opcion;
@@ -392,17 +373,15 @@ void metodosAbiertos()
 {
     int respuesta = 0, opcDos = 0;
 
-    do
-    {
+    do{
         respuesta = menuDos();
 
-        switch (respuesta)
-        {
+        switch (respuesta){
         case 1:
             metodo(respuesta);
             break;
         case 2:
-            cout << "\n\nTener en cuenta que la funciÃƒÂ³n no es continua, por ende es complicado encontrar la raiz por medio de Newton\n\n";
+            cout << "\n\nTener en cuenta que la función no es continua, por ende es complicado encontrar la raiz por medio de Newton\n\n";
             metodo(respuesta);
             break;
         case 3:
@@ -412,49 +391,42 @@ void metodosAbiertos()
             metodo(respuesta);
             break;
         case 0:
-            cout << "Saliendo del programa." << endl;
+            cout << "\nSaliendo del programa." << endl;
             break;
         default:
-            cout << "OpciÃƒÂ³n no vÃƒÂ¡lida. Por favor, elija una opciÃƒÂ³n vÃƒÂ¡lida." << endl;
+            cout << "Opción no válida. Por favor, elija una opción válida." << endl;
             break;
         }
 
     } while (opcDos != 0);
 }
 
-// FunciÃƒÂ³n para obtener el determinante de una matriz
-double determinante(vector<vector<double>> &matriz, int n)
+// Función para obtener el determinante de una matriz
+double determinante(vector<vector<double> > matriz, int n)
 {
     double det = 1.0;
 
-    for (int i = 0; i < n; i++)
-    {
+    for (int i = 0; i < n; i++){
         int maxRow = i;
-        for (int j = i + 1; j < n; j++)
-        {
-            if (abs(matriz[j][i]) > abs(matriz[maxRow][i]))
-            {
+        for (int j = i + 1; j < n; j++){
+            if (abs(matriz[j][i]) > abs(matriz[maxRow][i])){
                 maxRow = j;
             }
         }
 
-        if (maxRow != i)
-        {
+        if (maxRow != i){
             swap(matriz[i], matriz[maxRow]);
             det *= -1.0;
         }
 
         det *= matriz[i][i];
 
-        if (abs(det) < 1e-9)
-        {
+        if (abs(det) < 1e-9){
             return 0.0; // La matriz es singular
         }
 
-        for (int j = i + 1; j < n; j++)
-        {
-            for (int k = n - 1; k >= i; k--)
-            {
+        for (int j = i + 1; j < n; j++){
+            for (int k = n - 1; k >= i; k--){
                 matriz[j][k] -= matriz[i][k] * (matriz[j][i] / matriz[i][i]);
             }
         }
@@ -463,116 +435,232 @@ double determinante(vector<vector<double>> &matriz, int n)
     return det;
 }
 
-void printMatriz(vector<vector<double>> &mat, vector<double> &vec, int n)
-{
+void printMatriz(vector<vector<double> > &mat, vector<double> &vec, int n){
     cout << "Matriz proporcionada. \n\n";
 
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
+    for (int i = 0; i < n; i++){
+        for (int j = 0; j < n; j++){
             printf("%7.2f ", mat[i][j]);
         }
-
         printf(" | %7.2f\n", vec[i]);
+    }
+    cout << "\n\n";
+}
+
+
+void dominanteDiagonalmente(const vector<vector<double> > & matrizA){
+    int numMaxDiagonal = 0, j, i , n = matrizA.size();
+    double diagonal, sums = 0;
+    vector<double> diagonalesIntercambio(n, 0.0);
+
+    for ( i = 0; i < n; i++){
+            // diagonalValor=matrizA[i][i];
+        for (j = 0; j < n; j++){
+            if (i != j){
+                sums += abs(matrizA[i][j]);
+            }
+        }
+        if (matrizA[i][i] > sums || matrizA[i][i] == sums){
+            numMaxDiagonal ++;
+        }else{
+            diagonalesIntercambio[i] = i;
+        }
+        sums = 0;
+    }
+
+    if (numMaxDiagonal == n){
+        std::cout << "\nLa matriz es EDD\n";
+    }
+    else{
+        std::cout << "\nLa convergencia no se garantiza por no tratarse de un sistema EDD \n";
     }
 }
 
-void eliminacionGauss()
-{
-    int n;
+double normaEspectral(const vector<double> & vector1, const vector<double> & vector2) {
+    double maxDiferencia = 0.0;
+    int i;
+    for (i = 0; i < vector1.size(); ++i) {
+        double diferencia = abs(vector2[i] - vector1[i]);
+        maxDiferencia = max(maxDiferencia, diferencia);
+    }
 
-    cout << "1. Ingrese la dimensiÃƒÂ³n n de la matriz: ";
-    cin >> n;
+    return maxDiferencia;
+}
+void metodoJacobi(vector<vector<double> >& matrizA, vector<double>& vectorB, vector<double>& vectorInicial, int maxIteraciones, double tolerancia) {
+    int i, n = matrizA.size();
+    vector<double> x = vectorInicial;
+    double error= 0;
+    dominanteDiagonalmente(matrizA);
+    int a; 
 
-    vector<vector<double>> matriz(n, vector<double>(n));
-    vector<double> vectorIndependiente(n);
 
-    // Lectura de la matriz y el vector independiente
-    cout << "2. Ingrese los coeficientes de la matriz por renglÃƒÂ³n:" << endl;
-    for (int i = 0; i < n; i++)
-    {
-        cout << "RenglÃƒÂ³n " << i + 1 << ": ";
-        for (int j = 0; j < n; j++)
-        {
-            cin >> matriz[i][j];
+// -------  "Depeje"
+    for (int i = 0; i < n; i++){
+        for ( int j = 0; j < n; j++){
+            if (i != j && matrizA[i][i] != 0){
+                matrizA[i][j] =  -1 * (matrizA[i][j] / matrizA[i][i]);
+            }
         }
-        cout << "Valor en el vector independiente: ";
-        cin >> vectorIndependiente[i];
+        vectorB[i] = vectorB[i] / matrizA[i][i]; 
+                
+    }
+    
+
+// ------- ITERCACIONES
+    // vector<double> x(n, 1);
+    vector<double> xSiguiente(n, 0.0);
+
+    for (int k = 0; k < maxIteraciones; ++k) {
+        a = 1;
+
+        for (int i = 0; i < n; ++i) {
+            double suma = 0.0;
+            for (int j = 0; j < n; ++j) {
+                if (i != j) {
+                    suma += matrizA[i][j] * x[j];
+                }
+            }
+            xSiguiente[i] = suma + vectorB[i];
+        }
+
+            error = normaEspectral(x, xSiguiente);
+        // Calcular el error por norma espectral
+        // double error = normaVector(productoMatrizVector(matrizA, xSiguiente)normaVector) - vectorB;
+
+        // Mostrar la sucesión de vectores y el error
+        std::cout << "Iteración " << k + 1 << ": ";
+        
+		for(i = 0; i<xSiguiente.size(); i++){
+			printf("x_%d: %9.6f    ", i+1, xSiguiente[i]);
+            
+		}
+        std::cout << "Error: " << error << endl;
+
+        // Verificar si se ha alcanzado la tolerancia
+        if (error < tolerancia) {
+            std::cout << "\nConvergencia alcanzada. Solución obtenida:\n";
+           
+            for(i = 0; i<xSiguiente.size(); i++){
+				printf("x_%d: %9.6f    ", i+1, round(xSiguiente[i]));
+			}
+    
+            std::cout << endl;
+            return;
+        }
+
+        x = xSiguiente;
+    }
+
+    std::cout << "\nSe alcanzó el número máximo de iteraciones sin convergencia.\n";
+            for(i = 0; i<xSiguiente.size(); i++){
+				printf("x_%d: %9.6f    ", i+1, round(xSiguiente[i]));
+			}
+            std::cout << endl;
+            return;
+}
+
+void opcionSitemaEcuaciones(){
+
+    // Lectura de la matriz y cálculo del determinante
+    int n;
+    char txtContinuar;
+    std::cout << "Ingrese el tamaño de la matriz cuadrada: ";
+    std::cin >> n;
+
+    vector<vector<double> > matriz(n, vector<double>(n));
+    vector<double> vectorIndependiente(n);   
+    
+    std::cout << "\n\t2.1 Lectura de la matriz\n\n";
+    std::cout << "\n Ingrese los elementos de la matriz por filas:\n";
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            std::cout << "Elemento en la posición [" << i+1 << "][" << j+1 << "]: ";
+            std::cin >> matriz[i][j];
+        }
+        std::cout << "\n";
+    }
+
+    // Comprobar si la matriz es cuadrada
+    if (n != matriz[0].size()) {
+        std::cout << "La matriz no es cuadrada. Vuelva a ingresar una matriz cuadrada.\n";
+        return;
+    }
+
+    std::cout << "Ingrese los elementos del vector independiente de términos constantes:\n";
+    for (int i = 0; i < n; ++i) {
+        std::cout << "Elemento x_" << i+1 <<": ";
+        std::cin >> vectorIndependiente[i];
     }
 
     // Verificar y corregir la matriz si es necesario
     char correccion;
 
     printMatriz(matriz, vectorIndependiente, n);
-    cout << "3. Ã‚Â¿Los datos son correctos? (S/N): ";
+    cout << "Â¿Los datos son correctos? (S/N): ";
     fflush(stdin);
     cin >> correccion;
 
-    while (correccion == 'N' || correccion == 'n')
-    {
+    while (correccion == 'N' || correccion == 'n'){
         int fila, columna;
         double nuevoValor;
 
         cout << "Ingrese la fila y columna del coeficiente a corregir: ";
         cin >> fila >> columna;
 
-        if (fila >= 1 && fila <= n && columna >= 1 && columna <= n)
-        {
+        if (fila >= 1 && fila <= n && columna >= 1 && columna <= n){
             cout << "Ingrese el nuevo valor: ";
             cin >> nuevoValor;
             matriz[fila - 1][columna - 1] = nuevoValor;
         }
+        else if (fila>n || columna >n){
+            cout << "Ingrese el nuevo valor en el Vector Independiente: ";
+            cin >> nuevoValor;
+            vectorIndependiente[fila-1] = nuevoValor;
+        }
 
         printMatriz(matriz, vectorIndependiente, n);
-        cout << "3. Ã‚Â¿Los datos son correctos? (S/N): ";
-        fflush(stdin);
+        cout << "¿Los datos son correctos? (S/N): ";
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         cin >> correccion;
     }
 
     // Calcular el determinante
     double det = determinante(matriz, n);
 
-    if (det != 0)
-    {
-        cout << "4. El determinante de la matriz es: " << det << endl;
+    if (det != 0){
+        cout << "\nEl determinante de la matriz es: " << det << endl;
 
-        // Verificar si la matriz es dominante diagonalmente
-        bool esDominante = true;
+        cout << "\n\n\tOpc 2.2 Solución del sistema por Jacobi (S)\n";
+        cout << "\n\tOpc 0 Salida (N)\n";
+        cout << "\n\t [S/N] para continuar: ";
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin >> txtContinuar;
 
-        for (int i = 0; i < n; i++)
-        {
-            double suma = 0;
-            for (int j = 0; j < n; j++)
-            {
-                if (i != j)
-                {
-                    suma += abs(matriz[i][j]);
-                }
+        if (txtContinuar == 'Y' || txtContinuar == 'S' || txtContinuar == 's'){
+            
+            // Solicitar vector inicial, máximo de iteraciones y tolerancia
+            vector<double> vectorInicial(n);
+            std::cout << "Ingrese el vector inicial:\n";
+            for (int i = 0; i < n; ++i) {
+                std::cout << "Elemento x_" << i+1 <<": ";
+                std::cin >> vectorInicial[i];
             }
 
-            if (abs(matriz[i][i]) <= suma)
-            {
-                esDominante = false;
-                break;
-            }
+            int maxIteraciones;
+            double tolerancia;
+            std::cout << "Ingrese el número máximo de iteraciones: ";
+            std::cin >> maxIteraciones;
+            std::cout << "Ingrese la tolerancia: ";
+            std::cin >> tolerancia;
+
+
+            metodoJacobi(matriz, vectorIndependiente, vectorInicial, maxIteraciones, tolerancia);
         }
 
-        if (esDominante)
-        {
-            cout << "5. La matriz es dominante diagonalmente." << endl;
-            // Implementar el resto de las opciones
-        }
-        else
-        {
-            cout << "5. La matriz no es dominante diagonalmente." << endl;
-            // Obtener el determinante por triangulaciÃƒÂ³n y continuar con las opciones
-        }
-
-        // Implementar el resto de las opciones
     }
-    else
-    {
-        cout << "4. El determinante es igual a cero, el sistema asociado no tiene soluciÃƒÂ³n." << endl;
+    else{
+        cout << "El determinante es igual a cero. El sistema asociado no tiene solución o tiene una infinidad de soluciones." << endl;
+        return;
     }
 }
+

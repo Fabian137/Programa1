@@ -4,13 +4,12 @@ int main()
 {
 
     caratula();
-
-    int opcMenu = 0;
+    int continuar, opcMenu = 0;
 
     do
     {
         cout << "\n\nOpc 1. Metodos abiertos\n";
-        cout << "Opc 2. Eliminacion Gaussiana\n";
+        cout << "Opc 2. Solución de sistemas de ecuaciones\n";
         cout << "Opc 0. Salida\n\n";
         cin >> opcMenu;
 
@@ -21,14 +20,14 @@ int main()
             break;
 
         case 2:
-            eliminacionGauss();
+            opcionSitemaEcuaciones();
             break;
 
         case 0:
             cout << "Saliendo del programa." << endl;
             break;
         default:
-            cout << "OpciÃ³n no vÃ¡lida. Por favor, elija una opciÃ³n vÃ¡lida." << endl;
+            cout << "Opción no válida. Por favor, elija una opción válida." << endl;
             break;
         }
 

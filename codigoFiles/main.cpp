@@ -9,7 +9,7 @@ int main()
     do
     {
         cout << "\n\nOpc 1. Metodos abiertos\n";
-        cout << "Opc 2. Solución de sistemas de ecuaciones\n";
+        cout << "Opc 2. SoluciÃ³n de sistemas de ecuaciones\n";
         cout << "Opc 0. Salida\n\n";
         cin >> opcMenu;
 
@@ -27,7 +27,7 @@ int main()
             cout << "Saliendo del programa." << endl;
             break;
         default:
-            cout << "Opción no válida. Por favor, elija una opción válida." << endl;
+            cout << "OpciÃ¡n no vÃ¡lida. Por favor, elija una opciÃ³n vÃ¡lida." << endl;
             break;
         }
 

@@ -486,7 +486,7 @@ double normaEspectral(const vector<double> & vector1, const vector<double> & vec
 }
 
 void metodoJacobi(vector<vector<double> >& matrizA, vector<double>& vectorB, vector<double>& vectorInicial, int maxIteraciones, double tolerancia) {
-    int i, n = matrizA.size();
+    int i, j, k, n = matrizA.size();
     vector<double> x = vectorInicial;
     double error= 0;
     dominanteDiagonalmente(matrizA);
@@ -494,8 +494,8 @@ void metodoJacobi(vector<vector<double> >& matrizA, vector<double>& vectorB, vec
 
 
 // -------  "Depeje"
-    for (int i = 0; i < n; i++){
-        for ( int j = 0; j < n; j++){
+    for ( i = 0; i < n; i++){
+        for ( j = 0; j < n; j++){
             if (i != j && matrizA[i][i] != 0){
                 matrizA[i][j] =  -1 * (matrizA[i][j] / matrizA[i][i]);
             }
@@ -509,12 +509,12 @@ void metodoJacobi(vector<vector<double> >& matrizA, vector<double>& vectorB, vec
     // vector<double> x(n, 1);
     vector<double> xSiguiente(n, 0.0);
 
-    for (int k = 0; k < maxIteraciones; ++k) {
+    for ( k = 0; k < maxIteraciones; ++k) {
         a = 1;
 
-        for (int i = 0; i < n; ++i) {
+        for ( i = 0; i < n; ++i) {
             double suma = 0.0;
-            for (int j = 0; j < n; ++j) {
+            for ( j = 0; j < n; ++j) {
                 if (i != j) {
                     suma += matrizA[i][j] * x[j];
                 }
@@ -559,7 +559,7 @@ void metodoJacobi(vector<vector<double> >& matrizA, vector<double>& vectorB, vec
 }
 
 
-int simetrica(std::vector<std::vector<double>>& matriz, int n){
+int simetrica(std::vector<std::vector<double> >& matriz, int n){
     int control = 0;
 
     for(int i = 0; i < n; i++){
@@ -579,7 +579,7 @@ int simetrica(std::vector<std::vector<double>>& matriz, int n){
     return 0; 
 }
 
-std::vector <double> sustitucionHaciaDelante(std::vector<std::vector<double>>& matriz, const std::vector<double>b) {
+std::vector <double> sustitucionHaciaDelante(std::vector<std::vector<double> >& matriz, const std::vector<double>b) {
     int n = matriz.size();
     std::vector<double> resultado(n, 0.0);
 
@@ -596,7 +596,7 @@ std::vector <double> sustitucionHaciaDelante(std::vector<std::vector<double>>& m
     return resultado;
 }
 
-std::vector <double> sustitucionHaciaAtras(std::vector<std::vector<double>>& matriz, const std::vector<double> &b) {
+std::vector <double> sustitucionHaciaAtras(std::vector<std::vector<double> >& matriz, const std::vector<double> &b) {
     int n = matriz.size();
     std::vector<double> resultado(n, 0.0);
 
@@ -627,7 +627,7 @@ int defPostiva(vector<vector<double> > matriz, int n){
     return 1;
 }
 
-void CholeskyAlgorithm(std::vector<std::vector<double>>& matriz) {
+void CholeskyAlgorithm(std::vector<std::vector<double> >& matriz) {
     int i,j,n = matriz.size();
 
     for (int i = 0; i < n; ++i) {
@@ -660,7 +660,7 @@ void CholeskyAlgorithm(std::vector<std::vector<double>>& matriz) {
     }
 }
 
-void LowUpeer(std::vector<std::vector<double>>& matriz, std::vector<std::vector<double>>& L, std::vector<std::vector<double>>& U){
+void LowUpeer(std::vector<std::vector<double> >& matriz, std::vector<std::vector<double> >& L, std::vector<std::vector<double> >& U){
     int i,j,n=matriz.size();
     for (i = 0; i < n; i++){
         L[i][i] = matriz[i][i];
@@ -795,8 +795,8 @@ void opcionSitemaEcuaciones(){
                 simetria = simetrica(matriz, n);
                 definidaPostiva = defPostiva(matriz, n);
                 if(simetria != 1 && definidaPostiva == 1 ){
-                    std::vector<std::vector<double>> L(n, std::vector<double>(n, 0.0));
-                    std::vector<std::vector<double>> U(n, std::vector<double>(n, 0.0));
+                    std::vector<std::vector<double> > L(n, std::vector<double>(n, 0.0));
+                    std::vector<std::vector<double> > U(n, std::vector<double>(n, 0.0));
                     std::vector<double> resultado(n, 0.0);
 
                     CholeskyAlgorithm(matriz);

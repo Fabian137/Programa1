@@ -213,7 +213,7 @@ void raizNewton(float valX, int opc){
                         return;
                     }
                 }
-                else if (x_0 < -1){
+                else if (x_0 <= -1){
                     cout << "\t\n La derivida del punto dado tiende a cero.!!\n Hay una asintota en y = 1\n";
                     cout << "\t\n Se modificara el valor de x_0 por -0.75\n";
 
@@ -467,10 +467,10 @@ void dominanteDiagonalmente(const vector<vector<double> > & matrizA){
     }
 
     if (numMaxDiagonal == n){
-        std::cout << "\nLa matriz es EDD\n";
+        std::cout << "\n\n\t--------------La matriz es EDD--------------\n\n";
     }
     else{
-        std::cout << "\nLa convergencia no se garantiza por no tratarse de un sistema EDD \n";
+        std::cout << "\n\n\t--------------La convergencia no se garantiza por no tratarse de un sistema EDD --------------\n\n";
     }
 }
 
@@ -690,6 +690,7 @@ void printSolucion(const std::vector<double>&res, int n){
 
 void opcionSitemaEcuaciones(){
     int control;
+    int eleccion = 10;
     // Lectura de la matriz y cálculo del determinante
     int n;
     char txtContinuar;
@@ -764,7 +765,7 @@ void opcionSitemaEcuaciones(){
 
     if (det != 0){
         cout << "\nEl determinante de la matriz es: " << det << endl;
-
+        control = 10;
         while(control != 0){
             cout << "\n\n\tOpc 2.2 Solución del sistema por Jacobi (2)\n";
             cout << "\n\n\tOpc 2.3 Solución del sistema por Cholesky (3)\n";
@@ -801,7 +802,8 @@ void opcionSitemaEcuaciones(){
 
                     CholeskyAlgorithm(matriz);
                     LowUpeer(matriz, L,U);
-
+                    printf("\nMatriz factorizada\n");
+                    printMatriz(L, vectorIndependiente, n);
                     printf("\n--Sustitución hacia adelante--\n");
                     resultado = sustitucionHaciaDelante(L, vectorIndependiente);
                     printSolucion(resultado, n);
@@ -809,6 +811,27 @@ void opcionSitemaEcuaciones(){
                     printf("\n--Vector solución--\n");
                     resultado = sustitucionHaciaAtras(U, resultado);
                     printSolucion(resultado, n);
+                        printf("\n¿Deseas ingresar otro vector independiente?(1=S|| 0 = NO)\n");
+                        std::cin >> eleccion;
+                    while(eleccion != 0){
+                                std::cout << "Ingrese los elementos del vector independiente de términos constantes:\n";
+                                    for (int i = 0; i < n; ++i) {
+                                        std::cout << "Elemento x_" << i+1 <<": ";
+                                        std::cin >> vectorIndependiente[i];
+                                    }
+                                printf("\n--Sustitución hacia adelante--\n");
+                            resultado = sustitucionHaciaDelante(L, vectorIndependiente);
+                            printSolucion(resultado, n);
+            
+                            printf("\n--Vector solución--\n");
+                            resultado = sustitucionHaciaAtras(U, resultado);
+                            printSolucion(resultado, n);
+
+
+                        printf("\n¿Deseas ingresar otro vector independiente?(1=SÍ|| 0 = NO)\n\n");
+                        std::cin >> eleccion;
+                    }
+                    
 
                 }else{
                     cout << "\n\n Sistema no apropiado para Cholesky\n"; 
@@ -824,10 +847,8 @@ void opcionSitemaEcuaciones(){
 
         }
 
-    }
-    else{
+    }else{
         cout << "El determinante es igual a cero. El sistema asociado no tiene solución o tiene una infinidad de soluciones." << endl;
         return;
     }
-}   
-
+}

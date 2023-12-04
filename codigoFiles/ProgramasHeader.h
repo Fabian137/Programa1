@@ -485,7 +485,7 @@ double normaEspectral(const vector<double> & vector1, const vector<double> & vec
     return maxDiferencia;
 }
 
-void metodoJacobi(vector<vector<double> >& matrizA, vector<double>& vectorB, vector<double>& vectorInicial, int maxIteraciones, double tolerancia) {
+void metodoJacobi(vector<vector<double> > matrizA, vector<double> vectorB, vector<double>& vectorInicial, int maxIteraciones, double tolerancia) {
     int i, j, k, n = matrizA.size();
     vector<double> x = vectorInicial;
     double error= 0;
@@ -558,7 +558,6 @@ void metodoJacobi(vector<vector<double> >& matrizA, vector<double>& vectorB, vec
             return;
 }
 
-
 int simetrica(std::vector<std::vector<double> >& matriz, int n){
     int control = 0;
 
@@ -566,18 +565,31 @@ int simetrica(std::vector<std::vector<double> >& matriz, int n){
         for (int j = 0; j < n; j++){
             if(matriz[i][j] != matriz[j][i]){
                 control = 1;
+               printf("\n\n La matriz no es simetrica\n\n");
+                return 1;
             }
         }
     }
-
-    if( control == 1){
-        printf("\n\n La matriz no es simetrica\n\n");
-    }else{
+    // if( control == 1){
+        // return 1; 
+    // }else{
         printf("\n\n La matriz es simetrica\n\n");
-    }
-
-    return 0; 
+        return 0; 
+    // }
 }
+
+/*
+bool esSimetrica(const std::vector<std::vector<double>>& matriz, int n) {
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            if (matriz[i][j] != matriz[j][i]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+*/
 
 std::vector <double> sustitucionHaciaDelante(std::vector<std::vector<double> >& matriz, const std::vector<double>b) {
     int n = matriz.size();
@@ -725,7 +737,7 @@ void opcionSitemaEcuaciones(){
     }
 
     // Verificar y corregir la matriz si es necesario
-    char correccion;
+    char correccion, otroVector;
 
     printMatriz(matriz, vectorIndependiente, n);
     cout << "¿Los datos son correctos? (S/N): ";
@@ -811,9 +823,11 @@ void opcionSitemaEcuaciones(){
                     printf("\n--Vector solución--\n");
                     resultado = sustitucionHaciaAtras(U, resultado);
                     printSolucion(resultado, n);
-                        printf("\n¿Deseas ingresar otro vector independiente?(1=S|| 0 = NO)\n");
-                        std::cin >> eleccion;
-                    while(eleccion != 0){
+                        printf("\n¿Deseas ingresar otro vector independiente?[S/N]\n\n");
+                        fflush(stdin);
+    					std::cin >> otroVector;
+//                    while(eleccion != 0){
+                    while(otroVector == 's' || otroVector == 'S'){
                                 std::cout << "Ingrese los elementos del vector independiente de términos constantes:\n";
                                     for (int i = 0; i < n; ++i) {
                                         std::cout << "Elemento x_" << i+1 <<": ";
@@ -828,8 +842,10 @@ void opcionSitemaEcuaciones(){
                             printSolucion(resultado, n);
 
 
-                        printf("\n¿Deseas ingresar otro vector independiente?(1=SÍ|| 0 = NO)\n\n");
-                        std::cin >> eleccion;
+                        printf("\n¿Deseas ingresar otro vector independiente?[S/N]\n\n");
+                        fflush(stdin);
+    					std::cin >> otroVector;
+//                        std::cin >> eleccion;
                     }
                     
 
